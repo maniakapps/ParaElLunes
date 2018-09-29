@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Firebases</string>
+    <string name="email">Email</string>
+    <string name="contrase_a">Contraseña</string>
+    <string name="registrarse">Registrarse</string>
+    <string name="ya_tienes_una_cuenta_iniciar_sesi_n">¿Ya tienes una cuenta? Iniciar Sesión</string>
+    <string name="facebook_app_id">2126296210973112</string>
+    <string name="fb_login_protocol_scheme">fb2126296210973112</string>
+    <string name="iniciar_sesi_n">Iniciar sesión</string>
+    <string name="usuario_nuevo_registrate">¿Usuario nuevo? Registrate</string>
+    <string name="password">Password</string>
+    <string name="bienvenido">Bienvenido!</string>
+    <string name="cerrar_sesi_n">Cerrar sesión</string>
+    <string name="title_activity_usuario">UsuarioActivity</string>
+    <string name="titulo_dieta">Introduce un titulo para tu dieta</string>
+    <string name="escribe_aqui">Escribe aqui</string>
+    <string name="escribe_aqu_tu_dieta">Escribe aquí tu dieta</string>
+    <string name="enviar_dieta">Enviar dieta</string>
+</resources>
