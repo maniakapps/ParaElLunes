@@ -22,11 +22,12 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="43dp"
+                android:layout_height="79dp"
                 android:text="@string/titulo_dieta"
                 android:textSize="24sp" />
 
             <EditText
+                android:inputType="text"
                 android:id="@+id/edtTitulo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -34,11 +35,12 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="67dp"
                 android:text="@string/escribe_aqu_tu_dieta"
                 android:textSize="24sp" />
 
             <EditText
+                android:inputType="text"
                 android:id="@+id/edtTexto"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -50,14 +52,24 @@
                 android:layout_height="match_parent"
                 android:text="@string/enviar_dieta"
                 android:textSize="24sp" />
+
             <Button
+                android:id="@+id/btnDietas"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Ver dietas"
                 android:layout_gravity="center_horizontal"
-                android:textSize="24sp"
-                android:id="@+id/btnDietas"
-                />
+                android:text="@string/ver_dietas"
+                android:textSize="24sp" />
+
+            <ListView
+                android:id="@+id/listViewUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scrollbars="vertical"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="409dp">
+
+            </ListView>
         </LinearLayout>
 
     </ScrollView>
