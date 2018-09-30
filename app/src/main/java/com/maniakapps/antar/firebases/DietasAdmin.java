@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -33,7 +34,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class DietasAdmin extends AppCompatActivity {
-    private static final String TAG = "ActividadAdmin";
     @BindView(R.id.edtTitulo)
     EditText edtTitulo;
     @BindView(R.id.edtTexto)
@@ -47,21 +47,17 @@ public class DietasAdmin extends AppCompatActivity {
     private ArrayList<String> list;
     private ArrayList<String> listTextos;
     ArrayAdapter<String> adapter;
-    String options;
     private DatabaseReference mDatabase;
     private String titulo;
     private String texto;
-    private String userId;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dietas_admin);
-        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
         ButterKnife.bind(this);
         mDatabase = FirebaseDatabase.getInstance().getReference("dietas");
-        DietasUsuario ds = new DietasUsuario();
         getDatas();
 
     }
@@ -71,10 +67,11 @@ public class DietasAdmin extends AppCompatActivity {
         try {
             titulo = edtTitulo.getText().toString().trim();
             texto = edtTexto.getText().toString().trim();
+            if(!TextUtils.isEmpty(titulo))
             writeNewUser(titulo, texto);
             mostrarToast("Se ha enviado a la base!");
         } catch (Exception e) {
-            mostrarToast("No se pudo guardar la dieta");
+            mostrarToast("No se pudo guardar la dieta porque ocurrio un error inesperado");
         }
 
     }
@@ -159,7 +156,6 @@ public class DietasAdmin extends AppCompatActivity {
     private void displayToast(String a){
         Toast.makeText(getApplicationContext(),a,Toast.LENGTH_LONG).show();
     }
-
     public void openDialog(String green) {
         AlertDialog alertDialog = new AlertDialog.Builder(this).create();
         // Set Custom Title
