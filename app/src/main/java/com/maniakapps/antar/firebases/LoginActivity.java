@@ -139,7 +139,8 @@ public class LoginActivity extends AppCompatActivity {
                             if (!task.isSuccessful()) {
                                 Toast.makeText(LoginActivity.this, "No se pudo iniciar sesion", Toast.LENGTH_SHORT).show();
                             } else {
-                                startActivity(new Intent(LoginActivity.this, UserActivity.class));
+
+                                startActivity(new Intent(LoginActivity.this, DietasUsuario.class));
                                 finish();
                             }
                         }
