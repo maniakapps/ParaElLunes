@@ -67,9 +67,12 @@ public class DietasAdmin extends AppCompatActivity {
         try {
             titulo = edtTitulo.getText().toString().trim();
             texto = edtTexto.getText().toString().trim();
-            if(!TextUtils.isEmpty(titulo))
+            if(!TextUtils.isEmpty(titulo) && !TextUtils.isEmpty(texto)){
             writeNewUser(titulo, texto);
-            mostrarToast("Se ha enviado a la base!");
+            mostrarToast("Se ha enviado a la base!");}
+            else{
+                mostrarToast("No se pudo guardar la dieta porque ocurrio un error inesperado");
+            }
         } catch (Exception e) {
             mostrarToast("No se pudo guardar la dieta porque ocurrio un error inesperado");
         }
