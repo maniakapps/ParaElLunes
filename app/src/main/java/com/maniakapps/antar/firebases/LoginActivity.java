@@ -64,64 +64,6 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
     CallbackManager callbackManager;
-    private String titulo;
-    private String texto;
-
-
-    public class Usuario{
-        String usuario;
-        public Usuario() {
-        }
-
-        public Usuario(String usuario) {
-            this.usuario = usuario;
-        }
-
-        public String getUsuario() {
-            return usuario;
-        }
-
-        public void setUsuario(String usuario) {
-            this.usuario = usuario;
-        }
-    }
-    public String buscar(){
-        final String[] usuario = new String[1];
-            FirebaseDatabase database;
-            DatabaseReference ref;
-            database = FirebaseDatabase.getInstance();
-            ref = database.getReference("Usuarios");
-            ChildEventListener listener = new ChildEventListener() {
-                @Override
-                public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                    final Usuario value = dataSnapshot.getValue(Usuario.class);
-                    assert value !=null;
-                    usuario[0] = value.getUsuario();
-                }
-
-                @Override
-                public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-                }
-
-                @Override
-                public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
-                }
-
-                @Override
-                public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                }
-            };
-            ref.addChildEventListener(listener);
-            return usuario[0];
-            }
 
             @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -180,7 +122,7 @@ public class LoginActivity extends AppCompatActivity {
         btnLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final String userEmail = loginEmailId.getText().toString();
+                String userEmail = loginEmailId.getText().toString();
                 String userPaswd = logInpasswd.getText().toString();
                 if (userEmail.isEmpty()) {
                     loginEmailId.setError("Introduce un correo electronico");
@@ -188,24 +130,22 @@ public class LoginActivity extends AppCompatActivity {
                 } else if (userPaswd.isEmpty()) {
                     logInpasswd.setError("Introduce una contraseña");
                     logInpasswd.requestFocus();
-                } else {
+                } else if (userEmail.isEmpty() && userPaswd.isEmpty()) {
+                    Toast.makeText(LoginActivity.this, "Fields Empty!", Toast.LENGTH_SHORT).show();
+                } else if (!(userEmail.isEmpty() && userPaswd.isEmpty())) {
                     firebaseAuth.signInWithEmailAndPassword(userEmail, userPaswd).addOnCompleteListener(LoginActivity.this, new OnCompleteListener() {
                         @Override
                         public void onComplete(@NonNull Task task) {
                             if (!task.isSuccessful()) {
                                 Toast.makeText(LoginActivity.this, "No se pudo iniciar sesion", Toast.LENGTH_SHORT).show();
                             } else {
-
-                                if(!buscar().equals(userEmail)){
                                 startActivity(new Intent(LoginActivity.this, UserActivity.class));
                                 finish();
-                                }else {
-                                    startActivity(new Intent(LoginActivity.this,DietasAdmin.class));
-                                    finish();
-                                }
                             }
                         }
                     });
+                } else {
+                    Toast.makeText(LoginActivity.this, "Error", Toast.LENGTH_SHORT).show();
                 }
             }
         });
